@@ -5,11 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import com.example.shorymovies.common.Constants
 import com.example.shorymovies.common.SecurityUtils
 import com.example.shorymovies.network.model.Resource
-import com.example.shorymovies.network.model.details.MovieDetails
 import com.example.shorymovies.network.model.home.SuperHeroesResponse
-import com.example.shorymovies.network.model.movies.Movie
 import com.example.shorymovies.network.repository.home.SuperHeroesRepository
-import com.example.shorymovies.network.repository.movies.MoviesRepository
 import java.util.Date
 import javax.inject.Inject
 
