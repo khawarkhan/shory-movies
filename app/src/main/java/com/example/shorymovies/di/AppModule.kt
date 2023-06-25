@@ -2,6 +2,7 @@ package com.example.shorymovies.di
 
 import android.content.Context
 import com.example.shorymovies.BuildConfig
+import com.example.shorymovies.common.NetworkUtils
 import com.example.shorymovies.common.NetworkUtils.getOfflineInterceptor
 import com.example.shorymovies.common.NetworkUtils.getOnlineInterceptor
 import com.example.shorymovies.common.NetworkUtils.hasNetwork
@@ -19,6 +20,7 @@ import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
 import javax.inject.Singleton
 
 
@@ -67,6 +69,7 @@ object AppModule {
                         .build()
                 chain.proceed(request)
             }).build()
+
 
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BaseURL)

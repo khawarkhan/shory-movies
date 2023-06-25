@@ -3,9 +3,7 @@ package com.example.shorymovies.common
 import android.content.Context
 import android.content.Context.CONNECTIVITY_SERVICE
 import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import android.os.Build
-import okhttp3.CacheControl
 import okhttp3.Interceptor
 import okhttp3.Request
 
@@ -69,5 +67,6 @@ object NetworkUtils {
             chain.proceed(request)
         }
     }
+
 
 }
