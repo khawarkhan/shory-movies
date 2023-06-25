@@ -22,11 +22,16 @@ class AppDialog {
         ) {
             val alertDialog = AlertDialog.Builder(context)
 
-            alertDialog.apply {
+            val builder = alertDialog.apply {
                 setMessage(msg)
-                setPositiveButton("OK", posClickListener)
+                setPositiveButton(context.getString(R.string.ok), posClickListener)
 
-            }.create().show()
+            }.create()
+
+            builder.show()
+
+            builder.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(Color.WHITE)
+            builder.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(Color.WHITE)
         }
 
 

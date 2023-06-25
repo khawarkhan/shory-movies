@@ -75,7 +75,11 @@ class MoviesFragment : Fragment() {
 
         // prompt user if no content found for selected character name
         if (movies.isEmpty()) {
-            showMessageDialog(requireContext(), getString(R.string.empty_data)) { _, _ ->
+            val msg  = String.format(
+                binding.root.context.getString(R.string.empty_data),
+                args.data
+            )
+            showMessageDialog(requireContext(), msg) { _, _ ->
                 findNavController().popBackStack()
             }
             return

@@ -15,7 +15,7 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="alert">Alert</string>
-    <string name="empty_data">Oop! no data found\nPlease try again</string>
+    <string name="empty_data">Oop! no such movie found named \n\n\"%s\" \n\nPlease go back and select another Super hero character</string>
     <string name="let_watch_movie">Lets watch a movie\n\n%s</string>
     <string name="movie_finshed">Movie finished!</string>
 </resources>
