@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/charactersFragment">
+
+    <!--Define all fragments in nav_graph to allow MainActivity navigate through all screens  -->
+
+    <!--Home Fragment-->
+    <fragment
+        android:id="@+id/charactersFragment"
+        android:name="com.example.shorymovies.ui.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+
+        <!--defining screen in/out animation flow -->
+        <action
+            android:id="@+id/action_character_to_movies"
+            app:destination="@id/MoviesFragment"
+
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+
+
+    </fragment>
+
+
+    <!--Movies Fragment-->
+    <fragment
+        android:id="@+id/MoviesFragment"
+        android:name="com.example.shorymovies.ui.movies.MoviesFragment"
+        android:label="Listing"
+        tools:layout="@layout/fragment_movies">
+
+        <!--defining data type this screen can receive/pass-on -->
+        <argument
+            android:name="data"
+            app:argType="string" />
+
+        <!--defining screen in/out animation flow -->
+        <action
+            android:id="@+id/action_movie_details"
+            app:destination="@id/MovieDetailsFragment"
+
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+
+    <!--Details Fragment-->
+    <fragment
+        android:id="@+id/MovieDetailsFragment"
+        android:name="com.example.shorymovies.ui.details.MovieDetailsFragment"
+        android:label="Detail"
+        tools:layout="@layout/fragment_movie_details">
+
+        <!--defining data type this screen can receive/pass-on -->
+        <argument
+            android:name="data"
+            app:argType="string" />
+    </fragment>
+
+</navigation>
