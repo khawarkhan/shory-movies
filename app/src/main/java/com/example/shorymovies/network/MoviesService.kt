@@ -1,5 +1,6 @@
 package com.example.shorymovies.network
 
+
 /**
  * created by Khawar Habib on 25/06/2023
  *
@@ -10,4 +11,5 @@ package com.example.shorymovies.network
  *
  **/
 interface MoviesService {
+
 }
