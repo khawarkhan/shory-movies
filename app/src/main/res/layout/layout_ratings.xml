@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/textViewRatings"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/spacer_5"
+    android:layout_marginEnd="@dimen/spacer_4"
+    android:background="@drawable/chip_bg"
+    android:paddingStart="@dimen/spacer_3"
+    android:paddingEnd="@dimen/spacer_3"
+    android:text="Another"
+
+
+    app:layout_constraintStart_toStartOf="parent" />

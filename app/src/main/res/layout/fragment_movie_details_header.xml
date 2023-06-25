@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!-- poster imageview -->
+    <ImageView
+        android:id="@+id/imageViewPoster"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/placeholder_square"
+        app:layout_constraintBottom_toTopOf="@+id/textViewTypeDuration"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--Movie title-->
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacer_4"
+        android:text="@string/overview"
+        android:textColor="@color/white"
+        android:textSize="@dimen/title4"
+        app:layout_constraintBottom_toTopOf="@+id/textViewDirector"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewPoster"
+        app:layout_constraintTop_toTopOf="@+id/imageViewPoster"
+
+        />
+
+    <!--Directer name-->
+    <TextView
+        android:id="@+id/textViewDirector"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/overview"
+        android:textColor="@color/white_light"
+        android:textSize="@dimen/subtitle1"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewPoster"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/textViewTitle"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
+
+
+    <!--duration, rated, type, year-->
+    <TextView
+        android:id="@+id/textViewTypeDuration"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacer_5"
+        android:text="Series"
+        android:textColor="@color/white_medium"
+        android:textSize="@dimen/body2"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPoster" />
+
+    <VideoView
+        android:id="@+id/imageViewVideo"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="@dimen/spacer_4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTypeDuration" />
+
+<!--    <VideoView-->
+<!--        android:id="@+id/videoView1"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_centerVertical="true" />-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
