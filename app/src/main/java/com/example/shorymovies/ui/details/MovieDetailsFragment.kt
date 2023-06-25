@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.shorymovies.R
-import com.example.shorymovies.common.AppDialog
+import com.example.shorymovies.common.DialogManager
 import com.example.shorymovies.databinding.FragmentMovieDetailsBinding
 import com.example.shorymovies.network.model.Resource
 import com.example.shorymovies.network.model.details.MovieDetails
@@ -92,7 +92,7 @@ class MovieDetailsFragment : Fragment() {
 
                 }
 
-                is Resource.Error -> AppDialog.showMessageDialog(
+                is Resource.Error -> DialogManager.showMessageDialog(
                     requireContext(),
                     response.message!!
                 )
@@ -243,7 +243,7 @@ class MovieDetailsFragment : Fragment() {
         binding.llDetailHeader.imageViewVideo.start()
 
         binding.llDetailHeader.imageViewVideo.setOnCompletionListener {
-            AppDialog.showAlertDialog(
+            DialogManager.showAlertDialog(
                 requireContext(),
                 null,
                 getString(R.string.movie_finshed),
