@@ -2,6 +2,7 @@ package com.example.shorymovies.di
 
 import android.content.Context
 import com.example.shorymovies.BuildConfig
+import com.example.shorymovies.common.Constants
 import com.example.shorymovies.common.NetworkUtils
 import com.example.shorymovies.common.NetworkUtils.getOfflineInterceptor
 import com.example.shorymovies.common.NetworkUtils.getOnlineInterceptor
@@ -50,6 +51,7 @@ object AppModule {
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
 
         val client: OkHttpClient = OkHttpClient.Builder()
+            .cache(myCache)
             /**
              * interceptor for just logging
              */
@@ -62,7 +64,6 @@ object AppModule {
              * for online caching
              */
             .addInterceptor(getOnlineInterceptor())
-            .cache(myCache)
             .addNetworkInterceptor(Interceptor { chain ->
                 val request: Request =
                     chain.request().newBuilder() // .addHeader(Constant.Header, authToken)
@@ -72,7 +73,7 @@ object AppModule {
 
 
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.BaseURL)
+            .baseUrl(Constants.BASE_URL)
             .client(client) // This line is important
             .addConverterFactory(GsonConverterFactory.create())
             .build()
