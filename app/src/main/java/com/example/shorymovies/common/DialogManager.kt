@@ -17,6 +17,10 @@ import com.example.shorymovies.R
  *
  **/
 object DialogManager {
+
+    /**
+     * show normal alert dialog with message and ok button
+     */
     fun showMessageDialog(
         context: Context,
         msg: String,
@@ -67,6 +71,9 @@ object DialogManager {
     }
 
 
+    /**
+     * Show dialog with Edit option to user
+     */
     fun showAlertWithEditField(
         context: Context,
         msg: String,
