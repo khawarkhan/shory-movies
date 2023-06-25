@@ -3,4 +3,19 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="movie_listing">Movie Listing</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="release_date">Year %s</string>
+    <string name="direction_by">By %s</string>
+    <string name="type_year_rated_duration">%s . %s . %s . %s</string>
+    <string name="overview">Overview</string>
+    <string name="actors">Actors</string>
+    <string name="writers">Writers</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="alert">Alert</string>
+    <string name="empty_data">Oop! no data found\nPlease try again</string>
+    <string name="let_watch_movie">Lets watch a movie\n\n%s</string>
+    <string name="movie_finshed">Movie finished!</string>
 </resources>
