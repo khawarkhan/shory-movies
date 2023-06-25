@@ -3,6 +3,7 @@ package com.example.shorymovies.ui.movies
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -119,26 +120,29 @@ class MoviesFragment : Fragment() {
     private var _runnable = Runnable {
         viewModel.getRandomMovieId()?.let { movie ->
 
-            val movieMessage = String.format(
-                binding.root.context.getString(R.string.let_watch_movie),
-                movie.Title
-            )
+            // show suggestion popup if user is still on movies screen
+            if (this.isAdded) {
+                val movieMessage = String.format(
+                    binding.root.context.getString(R.string.let_watch_movie),
+                    movie.Title
+                )
 
-            /** show Dialog/Popup to user after randomly find a movie to be watched! */
-            showAlertDialog(
-                requireContext(),
-                null,
-                movieMessage,
-                { _, _ ->
-                    /** take movies' imdb id and move to detail screen to watch movie */
-                    val homeToPageAction =
-                        MoviesFragmentDirections.actionMovieDetails(movie.imdbID)
-                    findNavController().navigate(homeToPageAction)
-                },
-                { _, _ ->
-                    // do nothing
-                },
-            )
+                /** show Dialog/Popup to user after randomly find a movie to be watched! */
+                showAlertDialog(
+                    requireContext(),
+                    null,
+                    movieMessage,
+                    { _, _ ->
+                        /** take movies' imdb id and move to detail screen to watch movie */
+                        val homeToPageAction =
+                            MoviesFragmentDirections.actionMovieDetails(movie.imdbID)
+                        findNavController().navigate(homeToPageAction)
+                    },
+                    { _, _ ->
+                        // do nothing
+                    },
+                )
+            }
         }
     }
 
