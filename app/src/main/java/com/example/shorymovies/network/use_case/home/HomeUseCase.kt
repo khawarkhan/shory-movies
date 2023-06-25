@@ -7,6 +7,7 @@ import com.example.shorymovies.common.SecurityUtils
 import com.example.shorymovies.network.model.Resource
 import com.example.shorymovies.network.model.home.SuperHeroesResponse
 import com.example.shorymovies.network.repository.home.SuperHeroesRepository
+import retrofit2.Response
 import java.util.Date
 import javax.inject.Inject
 
@@ -30,6 +31,12 @@ class HomeUseCase @Inject constructor(private val moviesRepository: SuperHeroesR
      */
     suspend fun fetchSuperHeroes() {
 
+        /** don't refetch super heroes if already exists*/
+        if(_superHeroMutableLiveDate.value is Resource.Success<SuperHeroesResponse>) {
+            if(_superHeroMutableLiveDate.value?.data != null) {
+                return
+            }
+        }
 
         _superHeroMutableLiveDate.value = Resource.Loading(true)
 

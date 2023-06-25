@@ -1,12 +1,9 @@
 package com.example.shorymovies.di
 
 import android.content.Context
-import com.example.shorymovies.BuildConfig
 import com.example.shorymovies.common.Constants
-import com.example.shorymovies.common.NetworkUtils
 import com.example.shorymovies.common.NetworkUtils.getOfflineInterceptor
 import com.example.shorymovies.common.NetworkUtils.getOnlineInterceptor
-import com.example.shorymovies.common.NetworkUtils.hasNetwork
 import com.example.shorymovies.network.MoviesService
 import dagger.Module
 import dagger.Provides
@@ -14,14 +11,11 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Cache
-import okhttp3.Interceptor
 import okhttp3.Interceptor.*
 import okhttp3.OkHttpClient
-import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.io.File
 import javax.inject.Singleton
 
 
@@ -44,17 +38,18 @@ object AppModule {
     @Singleton
     fun provideMovieApi(@ApplicationContext context: Context): MoviesService {
 
-        val cacheSize = (5 * 1024 * 1024).toLong()
+        val cacheSize = (10 * 1024 * 1024).toLong() // 10 MB
         val myCache = Cache(context.cacheDir, cacheSize)
 
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+//        val interceptor = HttpLoggingInterceptor()
+//        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
 
         val client: OkHttpClient = OkHttpClient.Builder()
+
             /**
              * interceptor for just logging
              */
-            .addInterceptor(interceptor)
+//            .addInterceptor(interceptor)
             /**
              * for offline caching
              */
@@ -69,8 +64,8 @@ object AppModule {
 
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
-            .client(client) // This line is important
             .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
             .build()
             .create(MoviesService::class.java)
     }
