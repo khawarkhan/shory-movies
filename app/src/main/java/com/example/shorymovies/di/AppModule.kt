@@ -51,7 +51,6 @@ object AppModule {
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
 
         val client: OkHttpClient = OkHttpClient.Builder()
-            .cache(myCache)
             /**
              * interceptor for just logging
              */
@@ -64,12 +63,8 @@ object AppModule {
              * for online caching
              */
             .addInterceptor(getOnlineInterceptor())
-            .addNetworkInterceptor(Interceptor { chain ->
-                val request: Request =
-                    chain.request().newBuilder() // .addHeader(Constant.Header, authToken)
-                        .build()
-                chain.proceed(request)
-            }).build()
+            .cache(myCache)
+            .build()
 
 
         return Retrofit.Builder()
