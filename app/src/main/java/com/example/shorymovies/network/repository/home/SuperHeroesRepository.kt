@@ -35,7 +35,7 @@ class SuperHeroesRepository @Inject constructor(
                 apiKey = Constants.marvelPublicKey,
                 hash,
                 ts,
-                50
+                100
             )
             emit(response)
         }
