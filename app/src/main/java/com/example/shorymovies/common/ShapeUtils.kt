@@ -11,7 +11,7 @@ import java.util.Random
  * Common utils we may/no need at different points
  *
  **/
-object Utils {
+object ShapeUtils {
 
     /**
      * Creates Dynamic shape drawable
