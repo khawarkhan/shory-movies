@@ -14,8 +14,11 @@
     <string name="writers">Writers</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+    <string name="enter_movie_name">Enter movie name</string>
+    <string name="find">Find</string>
     <string name="alert">Alert</string>
     <string name="empty_data">Oop! no such movie found named \n\n\"%s\" \n\nPlease go back and select another Super hero character</string>
     <string name="let_watch_movie">Lets watch a movie\n\n%s</string>
     <string name="movie_finshed">Movie finished!</string>
+    <string name="search_movie">Search Movie</string>
 </resources>
