@@ -19,6 +19,21 @@
         android:indeterminateTint="@color/white"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--Alert textview in case no movie found -->
+    <TextView
+        android:id="@+id/textViewAlert"
+        android:layout_width="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/white_medium"
+        android:layout_margin="@dimen/spacer_5"
+        android:textSize="@dimen/body2"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"/>
+
     <!--RecyclerView for movie listing-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/movies_recycler_view"

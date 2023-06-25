@@ -13,11 +13,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shorymovies.R
-import com.example.shorymovies.common.AppDialog.Companion.showAlertDialog
-import com.example.shorymovies.common.AppDialog.Companion.showMessageDialog
 import com.example.shorymovies.common.Constants
+import com.example.shorymovies.common.DialogManager
+import com.example.shorymovies.common.DialogManager.showAlertDialog
+import com.example.shorymovies.common.DialogManager.showMessageDialog
 import com.example.shorymovies.common.RecyclerItemClickListener
-import com.example.shorymovies.databinding.FragmentHomeBinding
 import com.example.shorymovies.databinding.FragmentMoviesBinding
 import com.example.shorymovies.network.model.Resource
 import com.example.shorymovies.network.model.movies.Movie
@@ -75,13 +75,17 @@ class MoviesFragment : Fragment() {
 
         // prompt user if no content found for selected character name
         if (movies.isEmpty()) {
-            val msg  = String.format(
+            val msg = String.format(
                 binding.root.context.getString(R.string.empty_data),
                 args.data
             )
+
+            binding.textViewAlert.text = msg
+            binding.textViewAlert.visibility = View.VISIBLE
             showMessageDialog(requireContext(), msg) { _, _ ->
                 findNavController().popBackStack()
             }
+
             return
         }
 
