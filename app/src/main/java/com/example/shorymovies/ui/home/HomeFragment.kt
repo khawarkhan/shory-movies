@@ -77,6 +77,7 @@ class HomeFragment : Fragment() {
             /** Go to Movies screen, to show movies for selected hero */
             viewModel.getCharacterName(index)?.let { name ->
 
+                /** pick super hero name and push Movie listing screen */
                 val homeToPageAction =
                     HomeFragmentDirections.actionCharacterToMovies(
                         /**
