@@ -2,4 +2,26 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="cardview_background_radius">@dimen/spacer_5</dimen>
+
+    <dimen name="title">50sp</dimen>
+    <dimen name="title1">40sp</dimen>
+    <dimen name="title2">34sp</dimen>
+    <dimen name="title3">28sp</dimen>
+    <dimen name="title4">22sp</dimen>
+    <dimen name="title5">20sp</dimen>
+    <dimen name="body1">17sp</dimen>
+    <dimen name="body2">15sp</dimen>
+    <dimen name="subtitle1">13sp</dimen>
+    <dimen name="caption1">11sp</dimen>
+
+    <dimen name="spacer_0">0dp</dimen>
+    <dimen name="spacer_1">2dp</dimen>
+    <dimen name="spacer_2">4dp</dimen>
+    <dimen name="spacer_3">8dp</dimen>
+    <dimen name="spacer_4">12dp</dimen>
+    <dimen name="spacer_5">16dp</dimen>
+    <dimen name="spacer_6">20dp</dimen>
+    <dimen name="spacer_7">24dp</dimen>
 </resources>
