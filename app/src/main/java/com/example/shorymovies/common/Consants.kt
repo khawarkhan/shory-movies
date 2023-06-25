@@ -43,4 +43,9 @@ object Constants {
      */
     val superHeroUrl = "https://gateway.marvel.com:443/v1/public/characters"
 
+    /**
+     * Time interval for showing an poup to user after random movie selection
+     */
+    const val suggestionTimeInterval: Long = 500
+
 }
