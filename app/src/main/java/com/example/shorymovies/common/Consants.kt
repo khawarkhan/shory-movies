@@ -48,4 +48,6 @@ object Constants {
      */
     const val suggestionTimeInterval: Long = 500
 
+    const val allowMovieSuggestion = false
+
 }

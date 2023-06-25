@@ -5,6 +5,7 @@ import android.content.Context.CONNECTIVITY_SERVICE
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Build
+import okhttp3.CacheControl
 import okhttp3.Interceptor
 import okhttp3.Request
 
@@ -39,13 +40,13 @@ object NetworkUtils {
     /**
      * online interceptor for cache response
      */
-    fun getOnlineInterceptor(context: Context): Interceptor {
+    fun getOnlineInterceptor(): Interceptor {
         return Interceptor { chain ->
             val response = chain.proceed(chain.request())
             val maxAge = 60 // read from cache for 60 seconds even if there is internet connection
             response.newBuilder()
-                .header("Cache-Control", "public, max-age=$maxAge")
                 .removeHeader("Pragma")
+                .header("Cache-Control", "public, max-age=$maxAge")
                 .build()
         }
     }
@@ -60,9 +61,10 @@ object NetworkUtils {
             if (!hasNetwork(context)) {
                 val maxStale = 60 * 60 * 24 * 30 // Offline cache available for 30 days
                 request = request.newBuilder()
-                    .header("Cache-Control", "public, only-if-cached, max-stale=$maxStale")
                     .removeHeader("Pragma")
+                    .header("Cache-Control", "public, only-if-cached, max-stale=$maxStale")
                     .build()
+
             }
             chain.proceed(request)
         }

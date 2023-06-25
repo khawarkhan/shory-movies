@@ -59,7 +59,7 @@ object AppModule {
             /**
              * for online caching
              */
-            .addInterceptor(getOnlineInterceptor(context))
+            .addInterceptor(getOnlineInterceptor())
             .cache(myCache)
             .addNetworkInterceptor(Interceptor { chain ->
                 val request: Request =

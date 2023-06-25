@@ -107,7 +107,9 @@ class MoviesFragment : Fragment() {
             }
         })
 
-        promptUserForRandomMovie()
+        /** Check if movie suggestion is allowed */
+        if (Constants.allowMovieSuggestion)
+            promptUserForRandomMovie()
     }
 
 
