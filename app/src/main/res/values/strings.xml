@@ -19,6 +19,6 @@
     <string name="alert">Alert</string>
     <string name="empty_data">Oop! no such movie found named \n\n\"%s\" \n\nPlease go back and select another Super hero character</string>
     <string name="let_watch_movie">Lets watch a movie\n\n%s</string>
-    <string name="movie_finshed">Movie finished!</string>
+    <string name="movie_finshed">Movie finished!\n\n Lets find you another one</string>
     <string name="search_movie">Search Movie</string>
 </resources>
