@@ -13,7 +13,6 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.Cache
 import okhttp3.Interceptor.*
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -45,19 +44,10 @@ object AppModule {
 //        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
 
         val client: OkHttpClient = OkHttpClient.Builder()
-
-            /**
-             * interceptor for just logging
-             */
-//            .addInterceptor(interceptor)
-            /**
-             * for offline caching
-             */
-            .addNetworkInterceptor(getOfflineInterceptor(context))
-            /**
-             * for online caching
-             */
-            .addInterceptor(getOnlineInterceptor())
+            /** for online caching  */
+            .addNetworkInterceptor(getOnlineInterceptor())
+            /** for offline caching */
+            .addInterceptor(getOfflineInterceptor(context))
             .cache(myCache)
             .build()
 
