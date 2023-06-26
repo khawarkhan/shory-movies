@@ -2,6 +2,7 @@ package com.example.shorymovies.network.use_case.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.shorymovies.BuildConfig
 import com.example.shorymovies.common.Constants
 import com.example.shorymovies.common.SecurityUtils
 import com.example.shorymovies.network.model.Resource
@@ -44,10 +45,10 @@ class HomeUseCase @Inject constructor(private val moviesRepository: SuperHeroesR
         val ts = "${Date().time}"
 
         // marvel public key
-        val marvelPublicKey = Constants.marvelPublicKey
+        val marvelPublicKey = BuildConfig.MARVEL_PUBLIC_KEY
 
         // marvel private key
-        val marvelPrivateKey = Constants.marvelPrivate
+        val marvelPrivateKey = BuildConfig.MARVEL_PRIVATE_KEY
 
         // hash used in query params
         val hash = SecurityUtils.MD5("${ts}${marvelPrivateKey}${marvelPublicKey}")

@@ -6,7 +6,6 @@ import android.net.ConnectivityManager
 import android.os.Build
 import okhttp3.CacheControl
 import okhttp3.Interceptor
-import okhttp3.Interceptor.*
 import okhttp3.Request
 
 

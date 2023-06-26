@@ -1,5 +1,6 @@
 package com.example.shorymovies.network
 
+import com.example.shorymovies.BuildConfig
 import com.example.shorymovies.common.Constants
 import com.example.shorymovies.network.model.details.MovieDetails
 import com.example.shorymovies.network.model.home.SuperHeroesResponse
@@ -30,14 +31,16 @@ interface MoviesService {
     @GET(".")
     suspend fun fetchMovies(
         @Query("s") keyword: String,
-        @Query("apikey") apikey: String = Constants.API_KEY,
+        /** keeping keys in gradle.properties to make it more secure than plain constants*/
+        @Query("apikey") apikey: String = BuildConfig.OMDB_API_KEY,
     ): Response<MoviesResponse>
 
 
     @GET(".")
     suspend fun fetchMovieDetails(
         @Query("i") imdbId: String,
-        @Query("apikey") apikey: String = Constants.API_KEY,
+        /** keeping keys in gradle.properties to make it more secure than plain constants*/
+        @Query("apikey") apikey: String = BuildConfig.OMDB_API_KEY,
     ): Response<MovieDetails>
 
 

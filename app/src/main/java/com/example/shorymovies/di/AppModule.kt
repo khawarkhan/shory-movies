@@ -1,7 +1,7 @@
 package com.example.shorymovies.di
 
 import android.content.Context
-import com.example.shorymovies.common.Constants
+import com.example.shorymovies.BuildConfig
 import com.example.shorymovies.common.NetworkUtils.getOfflineInterceptor
 import com.example.shorymovies.common.NetworkUtils.getOnlineInterceptor
 import com.example.shorymovies.network.MoviesService
@@ -53,7 +53,7 @@ object AppModule {
 
 
         return Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
+            .baseUrl(BuildConfig.OMDB_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
