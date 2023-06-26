@@ -35,22 +35,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMovieApi(@ApplicationContext context: Context): MoviesService {
-
-        val cacheSize = (10 * 1024 * 1024).toLong() // 10 MB
-        val myCache = Cache(context.cacheDir, cacheSize)
-
-//        val interceptor = HttpLoggingInterceptor()
-//        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-
-        val client: OkHttpClient = OkHttpClient.Builder()
-            /** for online caching  */
-            .addNetworkInterceptor(getOnlineInterceptor())
-            /** for offline caching */
-            .addInterceptor(getOfflineInterceptor(context))
-            .cache(myCache)
-            .build()
-
+    fun provideMovieApi(client: OkHttpClient): MoviesService {
 
         return Retrofit.Builder()
             .baseUrl(BuildConfig.OMDB_BASE_URL)
@@ -58,6 +43,26 @@ object AppModule {
             .client(client)
             .build()
             .create(MoviesService::class.java)
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(@ApplicationContext context: Context, cache: Cache): OkHttpClient {
+        return OkHttpClient.Builder()
+            /** for online caching  */
+            .addNetworkInterceptor(getOnlineInterceptor())
+            /** for offline caching */
+            .addInterceptor(getOfflineInterceptor(context))
+            .cache(cache)
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideCache(@ApplicationContext context: Context): Cache {
+        val cacheSize = (10 * 1024 * 1024).toLong() // 10 MB
+        return Cache(context.cacheDir, cacheSize)
     }
 
 }
