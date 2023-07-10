@@ -27,4 +27,6 @@ object Constants {
 
     const val allowMovieSuggestion = true
 
+    const val commonErrorMsg = "Something went wrong!"
+
 }
