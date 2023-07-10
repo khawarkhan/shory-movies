@@ -157,9 +157,7 @@ class MoviesFragment : Fragment() {
      * Fetch movies for given characters -> args.data
      */
     private fun fetchMovies() {
-        lifecycleScope.launch {
-            viewModel.fetchMovies(args.data)
-        }
+        viewModel.fetchMovies(args.data)
     }
 
     /**
@@ -173,7 +171,9 @@ class MoviesFragment : Fragment() {
                     initAdapter(response.data ?: emptyList())
                 }
 
-                is Resource.Error -> showMessageDialog(requireContext(), response.message!!)
+                is Resource.Error -> {
+                    showMessageDialog(requireContext(), response.message!!)
+                }
                 is Resource.Loading -> {
                     binding.loadingProgressBar.visibility =
                         if (response.isLoading) View.VISIBLE else View.GONE

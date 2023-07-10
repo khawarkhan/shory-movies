@@ -2,10 +2,12 @@ package com.example.shorymovies.ui.movies
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.shorymovies.network.model.Resource
 import com.example.shorymovies.network.model.movies.Movie
 import com.example.shorymovies.network.use_case.movies.MovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.random.Random
 
@@ -31,13 +33,15 @@ class MoviesViewModel @Inject constructor(
 
     /** * vars for movie list  */
     private val _movieMutableLiveDate = movieUseCase.movieLiveData
-    val movieLiveData: LiveData<Resource<ArrayList<Movie>>> = _movieMutableLiveDate
+    val movieLiveData: LiveData<Resource<List<Movie>>> = _movieMutableLiveDate
 
     /**
      * Fetch list of movies for selected character
      */
-    suspend fun fetchMovies(character: String) {
-        movieUseCase.fetchMovies(character)
+    fun fetchMovies(character: String) {
+        viewModelScope.launch {
+            movieUseCase.fetchMovies(character)
+        }
     }
 
 
@@ -45,7 +49,7 @@ class MoviesViewModel @Inject constructor(
      * Function to get IMDB movie id
      */
     fun getIMDBId(index: Int): String? {
-        val items = movieLiveData.value as Resource<ArrayList<Movie>>
+        val items = movieLiveData.value as Resource<List<Movie>>
         return items.data?.let {
             it[index].imdbID
         }
@@ -57,7 +61,7 @@ class MoviesViewModel @Inject constructor(
      */
     fun getRandomMovieId(): Movie? {
 
-        val items = movieLiveData.value as Resource<ArrayList<Movie>>
+        val items = movieLiveData.value as Resource<List<Movie>>
 
         return items.data?.let {
             val index = Random.nextInt(0, items.data.size)

@@ -3,11 +3,14 @@ package com.example.shorymovies.network.repository.home
 import com.example.shorymovies.BuildConfig
 import com.example.shorymovies.common.Constants
 import com.example.shorymovies.network.MoviesService
+import com.example.shorymovies.network.local.MovieDao
 import com.example.shorymovies.network.model.details.MovieDetails
 import com.example.shorymovies.network.model.home.SuperHeroesResponse
 import com.example.shorymovies.network.model.movies.MoviesResponse
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -40,6 +43,6 @@ class SuperHeroesRepository @Inject constructor(
                 100
             )
             emit(response)
-        }
+        }.flowOn(Dispatchers.IO)
     }
 }
