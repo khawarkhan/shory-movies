@@ -1,13 +1,13 @@
 package com.example.shorymovies.network.repository.movies
 
-import com.example.shorymovies.common.Constants
-import com.example.shorymovies.network.MoviesService
-import com.example.shorymovies.network.model.details.MovieDetails
-import com.example.shorymovies.network.model.home.SuperHeroesResponse
-import com.example.shorymovies.network.model.movies.MoviesResponse
+import com.example.shorymovies.network.local.MovieDao
+import com.example.shorymovies.network.model.Resource
+import com.example.shorymovies.network.model.movies.Movie
+import com.example.shorymovies.network.remote.MovieRemoteDataSource
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import retrofit2.Response
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 
@@ -20,19 +20,65 @@ import javax.inject.Inject
  *
  **/
 class MoviesRepository @Inject constructor(
-    private val apiServiceAPI: MoviesService
+    private val remoteDataSource: MovieRemoteDataSource,
+    private val movieDao: MovieDao
 ) {
 
 
     /**
-     * Fetch list of movies for selected character
+     * cache movies in db
      */
-    suspend fun fetchMovies(character: String): Flow<Response<MoviesResponse>> {
-        return flow {
-            val movies = apiServiceAPI.fetchMovies(keyword = character)
-            print(movies)
-            emit(movies)
+    private suspend fun saveInCache(movies: List<Movie>?) {
+        movies?.let {
+            movieDao.insertMovies(movies)
         }
     }
+
+    /**
+     * Fetch list of movies for selected character
+     */
+    suspend fun fetchMovies(character: String): Flow<Resource<List<Movie>>> {
+        return flow {
+
+            emit(Resource.Loading(true))
+
+            // find movies in cache by title user used to search movies for
+            val localMovies = movieDao.getMoviesByName(character)
+
+            // return cached movies if exists
+            if (!localMovies.isNullOrEmpty()) {
+                emit(Resource.Loading(false))
+                emit(Resource.Success(localMovies))
+            } else {
+
+                // fetch from server otherwise
+                val result = remoteDataSource.fetchMovies(character)
+
+                // upon success, cache all movies
+                if (result is Resource.Success) {
+
+                    // do data manipulation - add title to each movie object and save in
+                    // cache for future use
+                    result.data?.let { movies ->
+                        // add searched movie name in each movie and save cache
+                        movies.map {
+                            it.movieName = character
+                            return@map it
+
+                        }.also { mov ->
+                            // once done mapping movie name, save in db
+                            saveInCache(mov)
+                        }
+                    }
+                }
+
+                emit(Resource.Loading(false))
+
+                emit(result)
+            }
+
+        }.flowOn(Dispatchers.IO)
+    }
+
 
 }
