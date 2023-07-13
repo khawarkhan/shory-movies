@@ -7,6 +7,8 @@ import com.example.shorymovies.network.model.movies.Movie
  * created by Khawar Habib on 04/07/2023
  *
  * MovieDao with common query to be applied on Movies table
+ *
+ * ATTENTION: Movie DAO is only created for Movies listing for now
  **/
 @Dao
 interface MovieDao {

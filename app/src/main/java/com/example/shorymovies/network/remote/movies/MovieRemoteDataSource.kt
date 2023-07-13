@@ -1,15 +1,18 @@
-package com.example.shorymovies.network.remote
+package com.example.shorymovies.network.remote.movies
 
 import com.example.shorymovies.common.Constants
 import com.example.shorymovies.network.MoviesService
 import com.example.shorymovies.network.model.Resource
 import com.example.shorymovies.network.model.movies.Movie
+import com.example.shorymovies.network.remote.BaseDataSource
 import javax.inject.Inject
 
 /**
  * created by Khawar Habib on 08/07/2023
  *
  * fetches data from remote source
+ *
+ * * ATTENTION: Movie Remote data source is only created for Movies listing for now
  */
 class MovieRemoteDataSource @Inject constructor(
     private val apiServiceAPI: MoviesService

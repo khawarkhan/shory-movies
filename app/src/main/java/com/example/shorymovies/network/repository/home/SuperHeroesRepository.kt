@@ -24,7 +24,8 @@ import javax.inject.Inject
  *
  **/
 class SuperHeroesRepository @Inject constructor(
-    private val apiServiceAPI: MoviesService
+    private val apiServiceAPI: MoviesService,
+    private val movieDao: MovieDao
 ) {
 
 

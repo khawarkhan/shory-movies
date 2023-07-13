@@ -3,7 +3,7 @@ package com.example.shorymovies.network.repository.movies
 import com.example.shorymovies.network.local.MovieDao
 import com.example.shorymovies.network.model.Resource
 import com.example.shorymovies.network.model.movies.Movie
-import com.example.shorymovies.network.remote.MovieRemoteDataSource
+import com.example.shorymovies.network.remote.movies.MovieRemoteDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

@@ -34,7 +34,6 @@ abstract class BaseDataSource {
             val result = call.invoke()
 
             // check if success and result is not null
-//            if (result.isSuccessful && result.body() != null) {
             if (result.isSuccessful ) {
 
                 // transform data if needed
